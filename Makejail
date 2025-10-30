@@ -7,6 +7,9 @@ ARG vault_ajspec=gh+AppJail-makejails/vault
 
 FROM --entrypoint "${vault_ajspec}" vault:${vault_tag}
 
+CMD mkdir /data
+CMD chown vault:vault /data
+
 COPY "${vault_config}" /vault.hcl
 RAW if [ "${vault_disable_mlock}" = 0 ]; then
         REPLACE /vault.hcl DISABLE_MLOCK false
