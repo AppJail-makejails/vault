@@ -14,8 +14,19 @@ appjail makejail \
     -f gh+AppJail-makejails/vault \
     -o virtualnet=":<random> default" \
     -o nat \
-    -o limits="memorylocked:deny=1g"
+    -o limits="memorylocked:deny=1g" \
+    -o template="$PWD/template.conf"
 appjail start vault
+```
+
+**template.conf**:
+
+```
+exec.start: "/bin/sh /etc/rc"
+exec.stop: "/bin/sh /etc/rc.shutdown jail"
+mount.devfs
+persist
+allow.mlock
 ```
 
 **Note**: By default, mlock support is enabled, but it may not work on your system unless you set `vm.old_mlock` to `1`. If you do not want to do this, set `vault_disable_mlock` to `1`. See also: https://github.com/hashicorp/vault/issues/6340#issuecomment-472169916
