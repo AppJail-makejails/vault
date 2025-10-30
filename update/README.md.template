@@ -14,7 +14,7 @@ appjail makejail \
     -f gh+AppJail-makejails/vault \
     -o virtualnet=":<random> default" \
     -o nat \
-    -o limits="memorylocked:deny=1g" \
+    -o limits="memorylocked:deny=2g" \
     -o template="$PWD/template.conf"
 appjail start vault
 ```
