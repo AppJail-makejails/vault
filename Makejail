@@ -1,0 +1,39 @@
+INCLUDE options/options.makejail
+
+ARG vault_config=files/vault.hcl
+ARG vault_disable_mlock=0
+ARG vault_tag=13.5
+ARG vault_ajspec=gh+AppJail-makejails/vault
+
+FROM --entrypoint "${vault_ajspec}" vault:${vault_tag}
+
+COPY "${vault_config}" /vault.hcl
+RAW if [ "${vault_disable_mlock}" = 0 ]; then
+        REPLACE /vault.hcl DISABLE_MLOCK false
+RAW else
+        REPLACE /vault.hcl DISABLE_MLOCK true
+RAW fi
+
+STOP
+
+STAGE start
+
+RUN daemon \
+	-f \
+	-t "Tool for securely accessing secrets" \
+	-u vault \
+	-p /var/run/vault.pid \
+    -o /var/log/vault.log \
+		vault server -config /vault.hcl
+
+STAGE custom:vault_status
+
+CMD if [ -f "/var/run/vault.pid" ]; then \
+        top -ap `head -1 /var/run/vault.pid`; \
+    fi
+
+STAGE custom:vault_log
+
+CMD if [ -f "/var/log/vault.log" ]; then \
+        less -R /var/log/vault.log; \
+    fi

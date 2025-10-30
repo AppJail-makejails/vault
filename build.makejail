@@ -1,0 +1,7 @@
+INCLUDE options/options.makejail
+INCLUDE options/volumes.makejail
+
+PKG vault
+
+# It's preferable to use rctl(4) to limit memorylocked.
+CMD pw usermod -L root -n vault

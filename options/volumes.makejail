@@ -1,0 +1,1 @@
+OPTION volume=vault-data mountpoint:/data owner:471 group:471
