@@ -99,6 +99,13 @@ This image also supports `VAULT_REDIRECT_INTERFACE` and `VAULT_CLUSTER_INTERFACE
 * `PGID` (default: `1000`): Equivalent to `PUID` but for the Process Group ID.
 * `PUID` (default: `1000`): Process User ID for the container's main process, allowing you to match the owner of files written to mounted host volumes to your host system's user. Writable volumes are changed based on this environment variable.
 
+### Volumes
+
+| Name | Owner | Group | Perm | Type | Mountpoint |
+| --- | --- | --- | --- | --- | --- |
+| appjail-2593dce56c-vault_file | `${PUID}` | `${PGID}` | - | - | /vault/file |
+| appjail-b4ff4e0600-vault_logs | `${PUID}` | `${PGID}` | - | - | /vault/logs |
+
 ## OCI Configuration
 
 ```yaml
