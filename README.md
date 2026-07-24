@@ -120,3 +120,8 @@ build:
         NO_PKGCLEAN: "1"
       cache_dirs: ["pkgcache0:/var/cache/pkg"]
 ```
+
+## Notes
+
+1. The ideas present in the Docker image of Vault are taken into account for users who are familiar with it.
+2. `listener` isn't specified because it has already been specified from the CLI. See https://github.com/hashicorp/docker-vault/issues/7 and https://github.com/hashicorp/docker-vault/issues/109 for details.
