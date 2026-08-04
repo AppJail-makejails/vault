@@ -1,5 +1,6 @@
 ARG vault_from=ghcr.io/appjail-makejails/vault
 ARG vault_tag=latest
 
+OPTION container=boot
 OPTION overwrite=force
 OPTION from=${vault_from}:${vault_tag}
