@@ -13,7 +13,7 @@ ulimit -c 0
 
 create_user
 
-chown -R noroot:noroot /vault
+change_owner /vault
 
 # Allow setting VAULT_REDIRECT_ADDR and VAULT_CLUSTER_ADDR using an interface
 # name instead of an IP address. The interface name is specified using
