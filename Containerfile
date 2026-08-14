@@ -14,7 +14,7 @@ LABEL org.opencontainers.image.title="Vault" \
 RUN set -xe; \
     \
     pkg update; \
-    pkg install -U vault bash gawk; \
+    pkg install vault bash gawk; \
     \
     if [ -z "${NO_PKGCLEAN}" ]; then \
         pkg clean -a; \
